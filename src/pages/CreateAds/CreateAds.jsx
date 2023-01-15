@@ -31,10 +31,12 @@ const CreateAds = () => {
 
   return (
     <div className="m-5 border-2 border-black rounded-lg  p-5">
-      <div className="mb-5">Create Ads</div>
+      <button className="mb-5 px-5 py-2  font-semibold rounded-sm text-gray-500">
+        Create Ads
+      </button>
 
-      <div className="w-full h-full flex items-center justify-evenly ">
-        <div className="mt-4 md:mt-0 border h-[300px] w-[300px] py-5 pl-0 bg-slate-100">
+      <div className="w-full mx-auto h-full flex flex-col md:flex-row items-center justify-evenly">
+        <div className="mt-4 md:mt-0 border h-[300px] w-full sm:w-[300px] py-5 pl-0 bg-slate-100">
           <input
             type="checkbox"
             name="accreditationValue"
@@ -62,7 +64,7 @@ const CreateAds = () => {
           </div>
         </div>
 
-        <div className="mt-4 md:mt-0 border h-[300px] w-[300px] py-5 pl-0 bg-slate-100">
+        <div className="mt-4 md:mt-0 border h-[300px] w-full sm:w-[300px] py-5 pl-0 bg-slate-100">
           <input
             type="checkbox"
             name="accreditationValue"
@@ -91,23 +93,23 @@ const CreateAds = () => {
         </div>
       </div>
 
-      {value ? (
-        <Link
-          // to={`/${to}`}
-          to={{
-            pathname: `/${to}`,
-            state: {
-              location: location.pathname,
-            },
-          }}
-          className=""
-          onClick={next}
-          state={location.pathname}
-        >
-          Next
-        </Link>
-      ) : (
-        ""
+      {value && (
+        <div className="flex w-full justify-end mt-5">
+          <Link
+            // to={`/${to}`}
+            to={{
+              pathname: `/${to}`,
+              state: {
+                location: location.pathname,
+              },
+            }}
+            className="bg-blue-400 px-[50px] py-2 rounded-md text-white font-semibold"
+            onClick={next}
+            state={location.pathname}
+          >
+            Next
+          </Link>
+        </div>
       )}
     </div>
   );

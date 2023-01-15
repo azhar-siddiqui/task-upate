@@ -1,90 +1,56 @@
-import React from "react";
+import React, { useState } from "react";
 import DonutChart from "react-donut-chart";
+import { data } from "../../data/data";
+import Table from "../../components/Table/Table";
+// import "./dasboard.scss";
 
 const DashBoard = () => {
-  const data = [
-    {
-      label: "Unknown",
-      value: 25,
-      color: "#000000",
-    },
-    {
-      label: "Male",
-      value: 40,
-      color: "#FFA500",
-    },
-    {
-      label: "Female",
-      value: 35,
-      color: "#0000FF",
-    },
-  ];
-  return (
-    <div>
-      <DonutChart
-        data={data}
-        height={400}
-        width={400}
-        colors={["#000000", "#FF8C00", "#0000FF"]}
-        selectedOffset={false}
-      />
+  const [toggleTable, setToggleTable] = useState(true);
 
-      <div class="relative overflow-x-auto">
-        <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-          <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-            <tr>
-              <th scope="col" class="px-6 py-3">
-                Product name
-              </th>
-              <th scope="col" class="px-6 py-3">
-                Color
-              </th>
-              <th scope="col" class="px-6 py-3">
-                Category
-              </th>
-              <th scope="col" class="px-6 py-3">
-                Price
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-              <th
-                scope="row"
-                class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
-              >
-                Apple MacBook Pro 17"
-              </th>
-              <td class="px-6 py-4">Sliver</td>
-              <td class="px-6 py-4">Laptop</td>
-              <td class="px-6 py-4">$2999</td>
-            </tr>
-            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-              <th
-                scope="row"
-                class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
-              >
-                Microsoft Surface Pro
-              </th>
-              <td class="px-6 py-4">White</td>
-              <td class="px-6 py-4">Laptop PC</td>
-              <td class="px-6 py-4">$1999</td>
-            </tr>
-            <tr class="bg-white dark:bg-gray-800">
-              <th
-                scope="row"
-                class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
-              >
-                Magic Mouse 2
-              </th>
-              <td class="px-6 py-4">Black</td>
-              <td class="px-6 py-4">Accessories</td>
-              <td class="px-6 py-4">$99</td>
-            </tr>
-          </tbody>
-        </table>
+  return (
+    <>
+      <div className="md:flex w-full mx-auto mt-5">
+        <Table />
+        {toggleTable ? (
+          <div className="w-full border md:ml-2">
+            <DonutChart
+              className="dchart p-5  mx-auto w-[360px]"
+              width={500}
+              height={300}
+              innerRadius={0.8}
+              selectedOffset={0}
+              outerRadius={0.5}
+              colors={["#000000", "#FF8C00", "#0000FF"]}
+              data={data}
+            />
+          </div>
+        ) : (
+          <Table />
+        )}
       </div>
-    </div>
+      <div className="flex justify-end">
+        <button
+          className={`${
+            toggleTable === true && `bg-blue-500 rounded-md `
+          }pt-1 px-3`}
+          onClick={() => {
+            setToggleTable(true);
+          }}
+        >
+          <span className="material-symbols-outlined">data_usage</span>
+        </button>
+        <button
+          className={`${
+            toggleTable === false && `bg-blue-500 rounded-md `
+          }pt-1 px-3`}
+          onClick={() => {
+            setToggleTable(false);
+          }}
+        >
+          <span className="material-symbols-outlined">today</span>
+        </button>
+      </div>
+    </>
   );
 };
 

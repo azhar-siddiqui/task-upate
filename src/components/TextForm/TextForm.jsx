@@ -5,7 +5,10 @@ const TextForm = (props) => {
   const [media, setMedia] = useState({});
   const location = useLocation();
 
-  const mediaSubmit = () => {};
+  const mediaSubmit = (e) => {
+    e.preventDefault();
+    console.log(media);
+  };
 
   return (
     <div>
@@ -15,9 +18,9 @@ const TextForm = (props) => {
             <h5>Create Media</h5>
           </div>
 
-          <form className="w-full" onSubmit={mediaSubmit}>
-            <div className="flex justify-between">
-              <div className="w-5/12 mb-5">
+          <form className="w-full " onSubmit={mediaSubmit}>
+            <div className="md:flex justify-between md:mr-2">
+              <div className="w-full mb-5">
                 <div className="mb-2">
                   <label>Heading 01</label>
                   <input
@@ -41,8 +44,7 @@ const TextForm = (props) => {
                   />
                 </div>
               </div>
-
-              <div className="w-5/12">
+              <div className="w-full md:ml-2">
                 <label>Description 1</label>
                 <textarea
                   id="w3review"
@@ -88,21 +90,17 @@ const TextForm = (props) => {
             </div> */}
 
             <div className="mb-5">
-              <div className="">
-                <label>Video URL</label>
-                <input
-                  type="text"
-                  placeholder="Add the URL of the image you want to use for the ad"
-                  className="w-full border border-black outline-none p-2 "
-                  onChange={(e) =>
-                    setMedia({ ...media, video: e.target.value })
-                  }
-                />
-              </div>
+              <label>Video URL</label>
+              <input
+                type="text"
+                placeholder="Add the URL of the image you want to use for the ad"
+                className="w-full border border-black outline-none p-2 "
+                onChange={(e) => setMedia({ ...media, video: e.target.value })}
+              />
             </div>
 
-            <div className="flex w-full justify-between mb-5">
-              <div className="w-5/12">
+            <div className="md:flex w-full justify-between mb-5">
+              <div className="w-full md:mr-2">
                 <label>Business Name</label>
                 <input
                   type="text"
@@ -113,8 +111,8 @@ const TextForm = (props) => {
                   }
                 />
               </div>
-              <div className="flex flex-col w-5/12">
-                <label for="cars">Button Label</label>
+              <div className="flex flex-col w-full md:ml-2">
+                <label htmlFor="cars">Button Label</label>
                 <select
                   name="cars"
                   id="cars"
@@ -137,7 +135,6 @@ const TextForm = (props) => {
                 </select>
               </div>
             </div>
-
             <div>
               <label>Website URL</label>
               <input
@@ -153,14 +150,16 @@ const TextForm = (props) => {
             <div className="float-right my-3">
               <Link
                 to={location.state}
-                className="border border-black p-2 rounded-md"
+                className="border border-gray-500  px-8 py-2 rounded-md capitalize font-semibold"
               >
                 Back
               </Link>
-              <input
+              <button
                 type="submit"
-                className="border border-black rounded-md bg-sky-500 mx-3 p-2"
-              />
+                className="border border-black rounded-md bg-sky-500 hover:bg-sky-600 mx-3 px-5 py-2 capitalize font-semibold text-white"
+              >
+                submit
+              </button>
             </div>
           </form>
         </div>
